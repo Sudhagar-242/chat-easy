@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import HeaaderPage from "./HeaderBar/TopHeader";
+import SideBarPage from "./SideBarMenu/SideNavBar";
+
+import Providers from "./provider";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,7 +32,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Providers>
+          <div className="w-full h-svh m-auto overflow-y-scroll">
+            <HeaaderPage />
+            <div className="flex w-full h-[calc(100vh-40px)]">
+              <SideBarPage />
+              {children}
+            </div>
+          </div>
+        </Providers>
       </body>
     </html>
   );
