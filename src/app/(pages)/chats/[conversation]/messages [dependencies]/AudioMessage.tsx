@@ -17,9 +17,250 @@ const generateBars = (): BarsContainerType[] =>
 export default function AudioPlayer({ seconds }: { seconds: number }) {
   const [isPlays, setIsPlays] = useState(false);
   const [activeBar, setActiveBar] = useState<number>(-1);
-  const [bars] = useState<BarsContainerType[]>(generateBars());
-
-  seconds = seconds instanceof Number ? seconds : 30;
+  const [bars] = useState<BarsContainerType[]>([
+    {
+      height: 10,
+      opacity: 0.4,
+    },
+    {
+      height: 18,
+      opacity: 0.4,
+    },
+    {
+      height: 12,
+      opacity: 0.4,
+    },
+    {
+      height: 15,
+      opacity: 0.4,
+    },
+    {
+      height: 13,
+      opacity: 0.4,
+    },
+    {
+      height: 17,
+      opacity: 0.4,
+    },
+    {
+      height: 11,
+      opacity: 0.4,
+    },
+    {
+      height: 11,
+      opacity: 0.4,
+    },
+    {
+      height: 15,
+      opacity: 0.4,
+    },
+    {
+      height: 16,
+      opacity: 0.4,
+    },
+    {
+      height: 19,
+      opacity: 0.4,
+    },
+    {
+      height: 13,
+      opacity: 0.4,
+    },
+    {
+      height: 11,
+      opacity: 0.4,
+    },
+    {
+      height: 12,
+      opacity: 0.4,
+    },
+    {
+      height: 19,
+      opacity: 0.4,
+    },
+    {
+      height: 13,
+      opacity: 0.4,
+    },
+    {
+      height: 10,
+      opacity: 0.4,
+    },
+    {
+      height: 19,
+      opacity: 0.4,
+    },
+    {
+      height: 15,
+      opacity: 0.4,
+    },
+    {
+      height: 17,
+      opacity: 0.4,
+    },
+    {
+      height: 10,
+      opacity: 0.4,
+    },
+    {
+      height: 7,
+      opacity: 0.4,
+    },
+    {
+      height: 21,
+      opacity: 0.4,
+    },
+    {
+      height: 14,
+      opacity: 0.4,
+    },
+    {
+      height: 8,
+      opacity: 0.4,
+    },
+    {
+      height: 20,
+      opacity: 0.4,
+    },
+    {
+      height: 12,
+      opacity: 0.4,
+    },
+    {
+      height: 22,
+      opacity: 0.4,
+    },
+    {
+      height: 13,
+      opacity: 0.4,
+    },
+    {
+      height: 8,
+      opacity: 0.4,
+    },
+    {
+      height: 16,
+      opacity: 0.4,
+    },
+    {
+      height: 13,
+      opacity: 0.4,
+    },
+    {
+      height: 17,
+      opacity: 0.4,
+    },
+    {
+      height: 14,
+      opacity: 0.4,
+    },
+    {
+      height: 17,
+      opacity: 0.4,
+    },
+    {
+      height: 18,
+      opacity: 0.4,
+    },
+    {
+      height: 11,
+      opacity: 0.4,
+    },
+    {
+      height: 18,
+      opacity: 0.4,
+    },
+    {
+      height: 15,
+      opacity: 0.4,
+    },
+    {
+      height: 6,
+      opacity: 0.4,
+    },
+    {
+      height: 22,
+      opacity: 0.4,
+    },
+    {
+      height: 16,
+      opacity: 0.4,
+    },
+    {
+      height: 6,
+      opacity: 0.4,
+    },
+    {
+      height: 9,
+      opacity: 0.4,
+    },
+    {
+      height: 21,
+      opacity: 0.4,
+    },
+    {
+      height: 9,
+      opacity: 0.4,
+    },
+    {
+      height: 5,
+      opacity: 0.4,
+    },
+    {
+      height: 19,
+      opacity: 0.4,
+    },
+    {
+      height: 10,
+      opacity: 0.4,
+    },
+    {
+      height: 15,
+      opacity: 0.4,
+    },
+    {
+      height: 11,
+      opacity: 0.4,
+    },
+    {
+      height: 6,
+      opacity: 0.4,
+    },
+    {
+      height: 11,
+      opacity: 0.4,
+    },
+    {
+      height: 17,
+      opacity: 0.4,
+    },
+    {
+      height: 21,
+      opacity: 0.4,
+    },
+    {
+      height: 8,
+      opacity: 0.4,
+    },
+    {
+      height: 21,
+      opacity: 0.4,
+    },
+    {
+      height: 16,
+      opacity: 0.4,
+    },
+    {
+      height: 14,
+      opacity: 0.4,
+    },
+    {
+      height: 5,
+      opacity: 0.4,
+    },
+  ]);
+  console.log(bars);
+  seconds = typeof seconds === "number" && !isNaN(seconds) ? seconds : 30;
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -40,7 +281,7 @@ export default function AudioPlayer({ seconds }: { seconds: number }) {
   }, [bars.length, isPlays, seconds]);
 
   return (
-    <div className="flex items-center w-66 h-10 justify-around  bg-indigo-500 rounded-3xl shadow-md">
+    <article className="flex items-center w-66 h-10 justify-around  bg-indigo-500 rounded-3xl shadow-md">
       <div
         className="bg-white rounded-full !w-8 !h-8 grid place-items-center cursor-pointer"
         onClick={() => setIsPlays((prev) => !prev)}
@@ -83,6 +324,6 @@ export default function AudioPlayer({ seconds }: { seconds: number }) {
           .toString()
           .padStart(2, "0")}`}
       </div>
-    </div>
+    </article>
   );
 }

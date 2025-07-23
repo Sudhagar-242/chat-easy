@@ -16,8 +16,8 @@ export default function OrderBox({ CID }: { CID: number }) {
 
   return (
     <>
-      <div className="w-84.5 border border-[#E5E9EB] gap-y-3.5 box-border p-5 flex flex-col overflow-y-scroll overflow-x-hidden no-scrollbar scroll-smooth">
-        <div className="relative flex w-74.5 h-6.5 gap-x-6 mb-1.5 pb-2 border-b border-b-[#E5E9EB] font-medium text-[14px] text-black cursor-pointer">
+      <section className="w-84.5 border border-[#E5E9EB] gap-y-3.5 box-border p-5 flex flex-col overflow-y-scroll overflow-x-hidden no-scrollbar scroll-smooth">
+        <header className="relative flex w-74.5 h-6.5 gap-x-6 mb-1.5 pb-2 border-b border-b-[#E5E9EB] font-medium text-[14px] text-black cursor-pointer">
           <div
             className={Tab + (whichTab === "Order" && TabActive)}
             onClick={() => {
@@ -42,11 +42,11 @@ export default function OrderBox({ CID }: { CID: number }) {
               }
             ></span>
           </div>
-        </div>
+        </header>
         {whichTab === "Order" ? (
           OrderItems.map((item) => (
             <OrderCard
-              key={item.Items}
+              key={item.OID}
               Items={item.Items}
               ProductNames={item.ProductNames}
               OID={item.OID}
@@ -64,7 +64,7 @@ export default function OrderBox({ CID }: { CID: number }) {
         ) : (
           <h1>No Items Exist</h1>
         )}
-      </div>
+      </section>
     </>
   );
 }

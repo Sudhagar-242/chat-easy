@@ -33,7 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <div className="w-full h-svh m-auto overflow-y-scroll">
+          <div className="w-full h-svh m-auto overflow-hidden">
             <HeaaderPage />
             <div className="flex w-full h-[calc(100vh-40px)]">
               <SideBarPage />
@@ -41,6 +41,7 @@ export default function RootLayout({
             </div>
           </div>
         </Providers>
+        {/* <div className="w-full h-full bg-red-300">{children} </div> */}
       </body>
     </html>
   );

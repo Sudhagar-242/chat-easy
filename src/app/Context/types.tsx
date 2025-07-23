@@ -2,7 +2,7 @@ import React from "react";
 import { StaticImageData } from "next/image";
 
 export type UserListType = {
-  UserLogo: React.ReactNode;
+  UserLogo: string | StaticImageData;
   UserName: string;
   CID: number;
   lastMessage: string;
@@ -42,7 +42,7 @@ export type RecievedMessageType = {
 
 export type SendingMessageType = {
   sender: string;
-  profile: React.ReactNode;
+  profile: string | StaticImageData;
   position: string;
   message?: string;
   status?: "sent";
@@ -53,7 +53,7 @@ export type SendingMessageType = {
 };
 
 export type UserDataType = {
-  UserLogo: React.ReactNode;
+  UserLogo: string | StaticImageData;
   UserName: string;
   CID: number;
   lastMessage: string;

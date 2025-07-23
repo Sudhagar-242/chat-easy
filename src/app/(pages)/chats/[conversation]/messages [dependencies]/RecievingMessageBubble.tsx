@@ -13,11 +13,9 @@ export default function LeftMessageBubble({
   imageArray,
 }: RecievedMessageType) {
   return (
-    <div className="max-w-79 self-start relative">
+    <article className="max-w-79 self-start relative">
       {imageArray && (
-        <PopUpMenu
-          MenuItems={[{ label: "delete", icon: "pi pi-delete-left" }]}
-        />
+        <PopUpMenu MenuItems={[{ label: "Information", icon: "pi pi-info" }]} />
       )}
       <div className="flex">
         <span className="border-8 border-[#F2F2F7] border-l-transparent border-b-transparent border-r-0"></span>
@@ -54,6 +52,6 @@ export default function LeftMessageBubble({
           ))}
         </div>
       )}
-    </div>
+    </article>
   );
 }

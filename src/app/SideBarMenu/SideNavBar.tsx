@@ -1,43 +1,47 @@
 "use client";
 import React from "react";
 import { usePathname } from "next/navigation";
-import { MenuItemProps } from "../../Components/UI/MenuIconCard";
 
-import SideNavHome from "@/assets/SideNav/SideNavHome.svg";
-import SideNavMessage from "@/assets/SideNav/SideNavMessage.svg";
-import SideNavContacts from "@/assets/SideNav/SideNavContacts.svg";
-import SideNavSpeaker from "@/assets/SideNav/SideNavSpeaker.svg";
-import SideNavGit from "@/assets/SideNav/SideNavGit.svg";
-import SideNavWaves from "@/assets/SideNav/SideNavWaves.svg";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function SideNavBar(): React.ReactNode {
   const pathName = usePathname().split("/");
 
-  const SideNavMenu: MenuItemProps[] = [
-    { icon: <SideNavHome />, contentName: "HOME", id: "1top", href: "/home" },
+  const SideNavMenu = [
     {
-      icon: <SideNavMessage />,
+      icon: "/assets/SideNav/SideNavHome.svg",
+      contentName: "HOME",
+      id: "1top",
+      href: "/home",
+    },
+    {
+      icon: "/assets/SideNav/SideNavMessage.svg",
       contentName: "MESSAGE",
       Isclicked: true,
       id: "2top",
       href: "/chats",
     },
     {
-      icon: <SideNavContacts />,
+      icon: "/assets/SideNav/SideNavContacts.svg",
       contentName: "CONTACTS",
       id: "3top",
       href: "/contacts",
     },
     {
-      icon: <SideNavSpeaker />,
+      icon: "/assets/SideNav/SideNavSpeaker.svg",
       contentName: "SPEAKER",
       id: "1bot",
       href: "/speaker",
     },
-    { icon: <SideNavGit />, contentName: "GIT", id: "2bot", href: "/git" },
     {
-      icon: <SideNavWaves />,
+      icon: "/assets/SideNav/SideNavGit.svg",
+      contentName: "GIT",
+      id: "2bot",
+      href: "/git",
+    },
+    {
+      icon: "/assets/SideNav/SideNavWaves.svg",
       contentName: "WAVES",
       id: "3bot",
       href: "/waves",
@@ -45,8 +49,8 @@ export default function SideNavBar(): React.ReactNode {
   ];
 
   return (
-    <nav className="nav-bar">
-      <div className="nav-container">
+    <aside className="nav-bar">
+      <nav className="nav-container">
         {SideNavMenu.map((item, index) => {
           const isActive = pathName.includes(item.href!.slice(1));
           return (
@@ -58,13 +62,19 @@ export default function SideNavBar(): React.ReactNode {
                 <div
                   className={`nav-item ${isActive ? "active" : "not-active"}`}
                 >
-                  {item.icon}
+                  {/* {item.icon} */}
+                  <Image
+                    src={item.icon}
+                    alt={item.icon}
+                    width={40}
+                    height={36}
+                  />
                 </div>
               </Link>
             </React.Fragment>
           );
         })}
-      </div>
-    </nav>
+      </nav>
+    </aside>
   );
 }

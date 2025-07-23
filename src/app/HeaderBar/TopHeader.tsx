@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import Image from "next/image";
 
 import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
@@ -12,14 +13,7 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 
-import Logo from "@/assets/logo.svg";
-import ExpandFrame from "@/assets/ExpandFrame.svg";
-import UpgradeCrown from "@/assets/upgradeCrown.svg";
-import Notification from "@/assets/notification.svg";
-import MenuLogoSmall from "@/assets/menuLogoSmall.svg";
-import UserAngleDown from "@/assets/UserLogoDownArrow.svg";
-
-import "../globals.css";
+import Notification from "../../../public/assets/notification.svg";
 
 function SearchBar({
   width,
@@ -92,8 +86,8 @@ export default function TopHeader() {
   const show = () => {
     toast.current.show({
       severity: "info",
-      summary: "Info",
-      detail: "Message Content",
+      summary: "Alerts",
+      detail: "No Messages",
     });
   };
 
@@ -101,25 +95,63 @@ export default function TopHeader() {
     <PrimeReactProvider>
       <header className="header">
         <div className="flex gap-x-10">
-          <Logo className="cursor-pointer" />
-          <ExpandFrame className="cursor-pointer" />
+          {/* <Logo className="cursor-pointer" /> */}
+          <Image
+            src="/assets/logo.svg"
+            alt="Logo"
+            width={24}
+            height={24}
+            className="cursor-pointer"
+          />
+          {/* <ExpandFrame className="cursor-pointer" /> */}
+          <Image
+            src="/assets/ExpandFrame.svg"
+            alt="ExpandFrame"
+            width={20}
+            height={20}
+            style={{ width: "auto", height: "auto" }}
+            className="cursor-pointer"
+          />
         </div>
         <div className="search-bar">
           <SearchBar width="w-94 h-7" haveFilter={false} />
         </div>
         <div className="flex gap-x-1.5 h-7">
           <div className="upgrade-button">
-            <UpgradeCrown />
+            {/* <UpgradeCrown /> */}
+            <Image
+              src="/assets/UpgradeCrown.svg"
+              alt="UpgradeCrown"
+              width={18}
+              height={18}
+            />
             <p className="upgrade-text">Upgrade to Pro</p>
           </div>
           {/* <Notification className="cursor-pointer" /> */}
-          <div className="w-8 h-8 cursor-pointer">
+          <div className="navigation-button">
             <Toast ref={toast} />
-            <Button onClick={show} icon={<Notification />} unstyled={true} />
+            <Button
+              onClick={show}
+              icon={<Notification />}
+              unstyled={true}
+              className="cursor-pointer "
+            />
           </div>
           <div className="user-dropdown">
-            <MenuLogoSmall />
-            <UserAngleDown />
+            <Image
+              src="/assets/MenuLogoSmall.svg"
+              alt="MenuLogoSmall"
+              width={24}
+              height={24}
+            />
+            {/* <MenuLogoSmall /> */}
+            <Image
+              src="/assets/UserLogoDownArrow.svg"
+              alt="UserAngleDown"
+              width={14}
+              height={14}
+            />
+            {/* <UserAngleDown /> */}
           </div>
         </div>
       </header>

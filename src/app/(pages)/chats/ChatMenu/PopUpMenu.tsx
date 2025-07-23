@@ -3,7 +3,7 @@ import React, { ReactElement, useRef } from "react";
 import { Button } from "primereact/button";
 import { TieredMenu } from "primereact/tieredmenu";
 
-import ThreeDots from "@/assets/ChatSvgs/ThreeDots.svg";
+import ThreeDots from "../../../../../public/assets/ChatSvgs/ThreeDots.svg";
 
 type LabelAndIconType = {
   label: string;
@@ -85,8 +85,8 @@ const Items: PopUpMenuType[] = [
 
 export default function PopUpMenu({
   MenuItems = Items,
-  className = "w-6 h-6 rounded-full bg-[#f0f0fd] text-[#48535B]",
-  parentDivClassName = "card flex justify-center absolute -mt-2 -mr-2 right-0",
+  className = "w-6 h-6 rounded-full bg-[#f0f0fd] text-[#48535B] py-0.5 px-0.5 cursor-pointer",
+  parentDivClassName = "card flex justify-center absolute -mt-2 -mr-2 right-0 cursor-pointer",
 }: {
   MenuItems: PopUpMenuType[];
   className?: string;

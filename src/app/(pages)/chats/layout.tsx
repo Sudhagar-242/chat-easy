@@ -9,11 +9,11 @@ export default function ChatBoxLayOut({
 }) {
   return (
     <ContextProvider>
-      <section className="chat-layout">
+      <main className="chat-layout">
         <UserListsBox />
-        <main className="chat-user-conversation">{children}</main>
+        <section className="chat-user-conversation">{children}</section>
         <RightSideNav />
-      </section>
+      </main>
     </ContextProvider>
   );
 }

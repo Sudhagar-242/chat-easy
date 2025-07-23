@@ -2,10 +2,43 @@
 
 @import "tailwindcss";
 
+/* global index.css */
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+/* 
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
 @theme {
   --font-poppins: "Poppins", sans-serif;
   --font-segoe: "Segoe UI", "Tahoma", "Geneva", "Verdana", "sans-serif";
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+/* 
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+} */
+
+/* @utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+} */
 
 .no-scrollbar {
   -ms-overflow-style: none;
@@ -23,6 +56,10 @@
   .p-splitbutton.p-button-outlined
   > .p-splitbutton-menubutton.p-button {
   @apply w-10 h-8.5 p-0 m-0 border-none bg-[#6366f1] hover:bg-[#eaeafd];
+}
+
+.pages-default {
+  @apply w-full h-full bg-teal-300 grid place-items-center text-9xl font-sans tracking-widest;
 }
 
 /* Header Style */
@@ -76,11 +113,6 @@
   @apply bg-indigo-500 text-[#48535B];
 }
 
-/* slug for pages */
-.pages-default {
-  @apply w-full h-full bg-teal-300 grid place-items-center text-9xl font-sans tracking-widest;
-}
-
 /* Chats Layout Style */
 
 .chat-layout {
@@ -106,15 +138,15 @@
 /* chat User List Top section Box */
 
 .not-active-search-parent {
-  @apply m-auto border-2 border-gray-400 rounded-3xl box-border hover:bg-[#F0F0FE] overflow-hidden cursor-pointer px-3 py-1 flex items-center justify-between;
+  @apply m-auto border-2 border-gray-400 rounded-4xl box-border hover:bg-[#F0F0FE] overflow-hidden cursor-pointer px-3 py-1 flex items-center justify-between group;
 }
 
 .not-active-search-input {
-  @apply w-full h-full m-auto border-none rounded-4xl px-3 py-0.5;
+  @apply w-full h-full border-0 m-auto border-none rounded-4xl px-[12px] py-[2px];
 }
 
 .not-active-search-icon {
-  @apply top-1.5 text-gray-500 group-hover:text-black cursor-pointer;
+  @apply top-1.5 text-gray-500 group-hover:text-black  cursor-pointer;
 }
 
 .active-search-parent {
@@ -152,7 +184,7 @@
 /* User List Container */
 
 .user-list-container {
-  @apply mt-3 h-[calc(100vh-182.2px)] overflow-y-scroll scroll-smooth;
+  @apply mt-3 h-[calc(100vh-182.2px)] overflow-y-scroll scroll-smooth no-scrollbar;
 }
 
 .user-list-seperator {
@@ -160,7 +192,7 @@
 }
 
 .user-list {
-  @apply cursor-grab box-border mb-1 p-3 pb-3.5 w-full h-fit rounded-lg flex justify-between items-center hover:bg-[#EAEAFD];
+  @apply cursor-grab box-border mb-1 p-3 pb-3.5 w-full h-full rounded-lg flex justify-between items-center hover:bg-[#EAEAFD];
 }
 
 .user-list-active {
@@ -198,7 +230,7 @@
 /* Conversation Box page */
 
 .conversation-parent {
-  @apply w-full h-[calc(100vh-114px)] p-4 overflow-y-scroll scroll-smooth;
+  @apply w-full h-[calc(100vh-114px)] p-4 overflow-y-scroll no-scrollbar scroll-smooth;
 }
 
 .conversation-message-container {
@@ -212,7 +244,7 @@
 /* Conversation Box UserInfo */
 
 .not-active-userInfo-search-parent {
-  @apply h-8.5 m-auto border-2 border-gray-400 bg-[#eaeafd] rounded-4xl box-border hover:bg-[#F0F0FE] overflow-hidden cursor-pointer px-3 py-1 flex items-center justify-between;
+  @apply h-8.5 m-auto border-2 border-gray-400 bg-[#eaeafd] rounded-4xl box-border hover:bg-[#F0F0FE] overflow-hidden cursor-pointer px-3 py-1 flex items-center justify-between group;
 }
 
 .not-active-userInfo-search-input {
@@ -220,7 +252,7 @@
 }
 
 .not-active-userInfo-search-icon {
-  @apply top-1.5 text-gray-500 group-hover:text-black cursor-pointer;
+  @apply top-1.5 text-gray-500 group-hover:text-black  cursor-pointer;
 }
 
 .active-userInfo-search-parent {

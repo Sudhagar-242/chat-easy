@@ -6,18 +6,18 @@ import {
   OrderCardType,
 } from "./types";
 
-import User1 from "@/assets//UserListSvg/User1.svg";
-import User2 from "@/assets//UserListSvg/User2.svg";
-import User3 from "@/assets//UserListSvg/User3.svg";
-import User4 from "@/assets//UserListSvg/User4.svg";
-import User5 from "@/assets//UserListSvg/User5.svg";
-import User6 from "@/assets//UserListSvg/User6.svg";
-import User7 from "@/assets//UserListSvg/User7.svg";
+// import User1 from "@/assets/UserListSvg/User1.svg";
+// import User2 from "@/assets/UserListSvg/User2.svg";
+// import User3 from "@/assets/UserListSvg/User3.svg";
+// import User4 from "@/assets/UserListSvg/User4.svg";
+// import User5 from "@/assets/UserListSvg/User5.svg";
+// import User6 from "@/assets/UserListSvg/User6.svg";
+// import User7 from "@/assets/UserListSvg/User7.svg";
 
-import Image1 from "@/assets/OrderedImages/001.png";
-import Image2 from "@/assets/OrderedImages/002.png";
-import Image3 from "@/assets/OrderedImages/003.png";
-import { ReactNode } from "react";
+import Image1 from "../../../public/assets/OrderedImages/001.png";
+import Image2 from "../../../public/assets/OrderedImages/002.png";
+import Image3 from "../../../public/assets/OrderedImages/003.png";
+import { StaticImageData } from "next/image";
 
 export function getUserList() {
   const UserList = UserData.map(
@@ -76,7 +76,7 @@ export function setStar(ID: number) {
 }
 
 export function getUserInfo(ID: number): {
-  userDP: ReactNode;
+  userDP: string | StaticImageData;
   userName: string;
 } {
   const user = UserData.find((item) => {
@@ -86,9 +86,9 @@ export function getUserInfo(ID: number): {
     return item.CID === ID;
   });
   if (user && "seperator" in user) {
-    return {} as { userDP: ReactNode; userName: string };
+    return {} as { userDP: string | StaticImageData; userName: string };
   }
-  if (!user) return { userDP: null, userName: "" };
+  if (!user) return { userDP: "", userName: "" };
 
   return {
     userDP: user.UserLogo,
@@ -98,7 +98,7 @@ export function getUserInfo(ID: number): {
 
 export const UserData: ConversationDataType = [
   {
-    UserLogo: <User1 />,
+    UserLogo: "/assets/UserListSvg/User1.svg",
     UserName: "John Kennedy",
     CID: 1001,
     lastMessage: "Done!",
@@ -116,7 +116,7 @@ export const UserData: ConversationDataType = [
           },
           {
             sender: "Samantha Lee",
-            profile: <User7 />,
+            profile: "/assets/UserListSvg/User7.svg",
             position: "Designer",
             message: "But I got the wrong color for the jacket.",
             time: "9:12 AM",
@@ -129,7 +129,7 @@ export const UserData: ConversationDataType = [
           },
           {
             sender: "Samantha Lee",
-            profile: <User7 />,
+            profile: "/assets/UserListSvg/User7.svg",
             position: "Designer",
             message: "Sue, attaching now.",
             time: "9:14 AM",
@@ -154,7 +154,7 @@ export const UserData: ConversationDataType = [
     ],
   },
   {
-    UserLogo: <User2 />,
+    UserLogo: "/assets/UserListSvg/User2.svg",
     UserName: "Dwight Mitchel",
     CID: 1002,
     lastMessage: "Awsome! Thanks bro. Ill Take c...",
@@ -172,7 +172,7 @@ export const UserData: ConversationDataType = [
           },
           {
             sender: "Winson Joseph",
-            profile: <User6 />,
+            profile: "/assets/UserListSvg/User6.svg",
             position: "Category",
             message: "I was thinking the cafe downtown",
             time: "11:36AM",
@@ -206,7 +206,7 @@ get a smoothie anyways 👍`,
           },
           {
             sender: "John",
-            profile: <User7 />,
+            profile: "/assets/UserListSvg/User7.svg",
             position: "Sales EX",
             message: "Agreed",
             time: "11:36 AM",
@@ -214,10 +214,10 @@ get a smoothie anyways 👍`,
           },
           {
             sender: "John",
-            profile: <User7 />,
+            profile: "/assets/UserListSvg/User7.svg",
             position: "Sales EX",
             FileSent: "Audio",
-            seconds: 90,
+            seconds: 38,
             time: "11:36 AM",
             status: "sent",
           },
@@ -227,7 +227,13 @@ get a smoothie anyways 👍`,
     orders: [
       {
         Items: 5,
-        ProductNames: ["jhbivfs", "fkhifs", "sfvuhf", "sfyvg", "fviuhis"],
+        ProductNames: [
+          "Nike Air Max 270",
+          "Adidas Ultraboost 23",
+          "Converse Chuck Taylor All Star",
+          "Dr. Martens 1460 Boots",
+          "New Balance 990v6",
+        ],
         OID: "54465694685",
         ViewLink: "https://www.w3schools.com",
         OrderPlacedDate: "12th July 2024",
@@ -239,8 +245,8 @@ get a smoothie anyways 👍`,
       },
       {
         Items: 1,
-        ProductNames: ["Nike Deep canvas reu.."],
-        OID: "54465694685",
+        ProductNames: ["Nike Deep.."],
+        OID: "54465694687",
         ViewLink: "https://www.w3schools.com",
         OrderPlacedDate: "12th July 2024",
         OrderTime: "12:34 PM",
@@ -252,7 +258,7 @@ get a smoothie anyways 👍`,
     ],
   },
   {
-    UserLogo: <User3 />,
+    UserLogo: "/assets/UserListSvg/User3.svg",
     UserName: "Henri Berquel",
     CID: 1003,
     lastMessage: "Yes, it is radioactive!!",
@@ -266,7 +272,7 @@ get a smoothie anyways 👍`,
         messages: [
           {
             sender: "Carlos Rivera",
-            profile: <User4 />,
+            profile: "/assets/UserListSvg/User4.svg",
             position: "Sound Tech",
             message: "Just finished mixing the audio.",
             time: "01:20 PM",
@@ -274,10 +280,10 @@ get a smoothie anyways 👍`,
           },
           {
             sender: "Carlos Rivera",
-            profile: <User4 />,
+            profile: "/assets/UserListSvg/User4.svg",
             position: "Sound Tech",
             FileSent: "Audio",
-            seconds: 90,
+            seconds: 130,
             time: "01:21 PM",
             status: "sent",
           },
@@ -305,7 +311,7 @@ get a smoothie anyways 👍`,
     ],
   },
   {
-    UserLogo: <User4 />,
+    UserLogo: "/assets/UserListSvg/User4.svg",
     UserName: "+91 55426 79465",
     CID: 1004,
     lastMessage: "Sent an Audio",
@@ -322,7 +328,7 @@ get a smoothie anyways 👍`,
           },
           {
             sender: "Priya Menon",
-            profile: <User5 />,
+            profile: "/assets/UserListSvg/User5.svg",
             position: "HR Manager",
             message: "The shoes are too small.",
             time: "2:56 PM",
@@ -355,7 +361,7 @@ get a smoothie anyways 👍`,
     seperator: "From Tommorow",
   },
   {
-    UserLogo: <User5 />,
+    UserLogo: "/assets/UserListSvg/User5.svg",
     UserName: "+91 55426 79460",
     CID: 1006,
     lastMessage: "Alright!",
@@ -367,13 +373,13 @@ get a smoothie anyways 👍`,
         messages: [
           {
             sender: "Carlos Rivera",
-            profile: <User4 />,
+            profile: "/assets/UserListSvg/User4.svg",
             position: "Audio Engineer",
             message: "Here's the demo track",
             time: "01:20 PM",
             status: "sent",
             FileSent: "Audio",
-            seconds: 90,
+            seconds: 47,
           },
           {
             message: "Sounds good! Just need some tweaks.",

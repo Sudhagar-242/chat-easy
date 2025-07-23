@@ -3,8 +3,27 @@ import { OrderCardType } from "@/app/Context/types";
 import { Button } from "primereact/button";
 import PopUpMenu, { PopUpMenuType } from "./PopUpMenu";
 
-import ReviewStar from "@/assets/OrderedImages/RatingStars.svg";
-import HalfReviewStar from "@/assets/OrderedImages/HalfRattingStar.svg";
+import ReviewStar from "../../../../../public/assets/OrderedImages/RatingStars.svg";
+import HalfReviewStar from "../../../../../public/assets/OrderedImages/HalfRattingStar.svg";
+
+// const generateMessageKey = (msg: string | StaticImageData, index: number) => {
+//   const base =
+//     typeof msg === "string"
+//       ? (msg.slice(0, 7) || "") + index * Math.random() * 10 + index
+//       : Math.floor(Math.random() * 1000).toString();
+//   console.log(base);
+
+//   return btoa(encodeURIComponent(base)).slice(0, 20); // short base64
+// };
+
+const generateMessageKey = (msg: string | StaticImageData, index: number) => {
+  const src =
+    typeof msg === "string"
+      ? msg.split("?")[0]
+      : (msg as StaticImageData).src || "";
+
+  return `img-${index}-${src}`;
+};
 
 function OrderImageAligner({
   ImageArray,
@@ -37,7 +56,7 @@ function OrderImageAligner({
           if (ImageArray.length === 3 && index === 2) {
             return (
               <Image
-                key="kvdsssjnd"
+                key={generateMessageKey(ImageArray[index], index)}
                 className="inline-block bg-blue-900 col-span-2"
                 src={MenuItemIcon}
                 alt=""
@@ -47,7 +66,7 @@ function OrderImageAligner({
           if (ImageArray.length > 4 && index === 3) {
             return (
               <div
-                key="kfkdjuhs"
+                key={generateMessageKey(ImageArray[index], index)}
                 className="inline-block bg-pink-300 text-white box-border py-1.5 text-center"
               >
                 + {ImageArray.length - 3}
@@ -59,7 +78,7 @@ function OrderImageAligner({
           }
           return (
             <Image
-              key="kfkdjuhjjgs"
+              key={generateMessageKey(ImageArray[index], index)}
               className="inline-block bg-blue-900 w-full"
               src={MenuItemIcon}
               alt=""
@@ -84,11 +103,11 @@ export default function OrderCard({
   ProductNames,
 }: OrderCardType) {
   const OrderedPopUPMenu: PopUpMenuType[] = ProductNames.map((item) => ({
-    label: item,
+    label: item.slice(0, 6) + "...",
   }));
 
   return (
-    <div className="w-74.5 h-49.5 rounded-lg border relative box-border p-3 flex flex-col justify-between gap-y-2.5">
+    <article className="w-74.5 h-49.5 rounded-lg border relative box-border p-3 flex flex-col justify-between gap-y-2.5">
       <div className="absolute top-0 right-0">
         <PopUpMenu MenuItems={OrderedPopUPMenu} />
       </div>
@@ -181,6 +200,6 @@ export default function OrderCard({
           />
         </div>
       )}
-    </div>
+    </article>
   );
 }
