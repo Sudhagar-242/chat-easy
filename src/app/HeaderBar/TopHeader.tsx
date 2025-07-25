@@ -1,15 +1,10 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, FC } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 
 import SideNavBar from "../SideBarMenu/SideNavBar";
-
-import { PrimeReactProvider } from "primereact/api";
-import "primereact/resources/themes/lara-light-cyan/theme.css";
-import "primereact/resources/primereact.min.css";
-import "primeicons/primeicons.css";
 
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
@@ -20,15 +15,10 @@ import Notification from "../../../public/assets/notification.svg";
 import { placeholder } from "../constant/placeholder";
 import { sideNavMenu } from "../constant/sideNav";
 import Link from "next/link";
+import { TieredMenu } from "primereact/tieredmenu";
+import { userMenuitems } from "../constant/userMenu";
 
-function SearchBar({
-  width,
-  className = "",
-}: {
-  width: string;
-  haveFilter?: boolean;
-  className?: string;
-}) {
+function SearchBar() {
   const [onClick, setOnClick] = useState(false);
 
   function OnClickHandler() {
@@ -37,11 +27,11 @@ function SearchBar({
 
   return (
     <>
-      <div className={className}>
+      <div>
         {!onClick && (
           <div onClick={OnClickHandler}>
             <div
-              className={`${width} m-auto border-2 border-gray-400 rounded-4xl box-border hover:bg-[#F0F0FE] overflow-hidden cursor-pointer 
+              className={`w-94 h-7 m-auto border-2 border-gray-400 rounded-4xl box-border hover:bg-[#F0F0FE] overflow-hidden cursor-pointer 
                  px-3 py-1 flex items-center justify-between group`}
             >
               <InputText
@@ -63,7 +53,7 @@ function SearchBar({
         )}
         {onClick && (
           <div
-            className={`${width} m-auto px-3 py-1 border-2 border-gray-400 rounded-full box-border flex items-center gap-2`}
+            className={`w-94 h-7 m-auto px-3 py-1 border-2 border-gray-400 rounded-full box-border flex items-center gap-2`}
           >
             <InputText
               pt={{
@@ -87,8 +77,11 @@ function SearchBar({
 }
 
 export default function TopHeader() {
-  const [isExpanded, setIsExpanded] = useState(true);
-  const [mounted, setMounted] = useState(false);
+  const [isExpanded, setIsExpanded] = useState<boolean>(true);
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  const toast = useRef<Toast>(null);
+  const menu = useRef<TieredMenu>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -107,8 +100,6 @@ export default function TopHeader() {
     }
   }, [isExpanded, mounted]);
 
-  const toast = useRef<Toast>(null);
-
   const show = () => {
     if (toast.current) {
       toast?.current.show({
@@ -124,83 +115,86 @@ export default function TopHeader() {
   }
 
   return (
-    <PrimeReactProvider>
-      <header className="header">
-        <div className="flex gap-x-10">
-          {/* <Logo className="cursor-pointer" /> */}
-          <Link href="/">
-            <Image
-              src="/assets/logo.svg"
-              alt="Logo"
-              width={24}
-              height={24}
-              className="cursor-pointer"
-            />
-          </Link>
+    <header className="header">
+      <div className="flex gap-x-10">
+        <Link href="/">
           <Image
-            src={
-              isExpanded
-                ? "/assets/ExpandedFrame.svg"
-                : "/assets/ExpandFrame.svg"
-            }
-            alt="ExpandFrame"
-            width={20}
-            height={20}
-            style={{ width: "auto", height: "auto" }}
-            className="cursor-pointer"
-            onClick={() => onExpandHandler()}
+            src="/assets/logo.svg"
+            alt="Logo"
+            width={24}
+            height={24}
+            className="cursor-pointer hover:opacity-75"
           />
+        </Link>
+        <Image
+          src={
+            isExpanded ? "/assets/ExpandedFrame.svg" : "/assets/ExpandFrame.svg"
+          }
+          alt="ExpandFrame"
+          width={20}
+          height={20}
+          style={{ width: "auto", height: "auto" }}
+          className="cursor-pointer rounded-lg hover:bg-[#eaeafd] hover:opacity-85"
+          onClick={() => onExpandHandler()}
+        />
 
-          {mounted &&
-            isExpanded &&
-            document.getElementById("side-nav") &&
-            createPortal(
-              <SideNavBar sideNavMenu={sideNavMenu} />,
-              document.getElementById("side-nav") as HTMLDivElement
-            )}
+        {mounted &&
+          isExpanded &&
+          document.getElementById("side-nav") &&
+          createPortal(
+            <SideNavBar sideNavMenu={sideNavMenu} />,
+            document.getElementById("side-nav") as HTMLDivElement
+          )}
+      </div>
+      <div className="search-bar">
+        <SearchBar />
+      </div>
+      <div className="flex gap-x-1.5 h-7 items-center">
+        <div className="upgrade-button h-full hover:opacity-70 transition-all">
+          <Image
+            src="/assets/UpgradeCrown.svg"
+            alt="UpgradeCrown"
+            width={18}
+            height={18}
+          />
+          <p className="upgrade-text">Upgrade to Pro</p>
         </div>
-        <div className="search-bar">
-          <SearchBar width="w-94 h-7" haveFilter={false} />
+        <div className="navigation-button">
+          <Toast ref={toast} />
+          <Button
+            onClick={show}
+            icon={<Notification />}
+            unstyled={true}
+            className="cursor-pointer"
+          />
         </div>
-        <div className="flex gap-x-1.5 h-7">
-          <div className="upgrade-button">
-            {/* <UpgradeCrown /> */}
-            <Image
-              src="/assets/UpgradeCrown.svg"
-              alt="UpgradeCrown"
-              width={18}
-              height={18}
-            />
-            <p className="upgrade-text">Upgrade to Pro</p>
-          </div>
-          {/* <Notification className="cursor-pointer" /> */}
-          <div className="navigation-button">
-            <Toast ref={toast} />
-            <Button
-              onClick={show}
-              icon={<Notification />}
-              unstyled={true}
-              className="cursor-pointer "
-            />
-          </div>
-          <div className="user-dropdown">
-            <Image
-              src="/assets/MenuLogoSmall.svg"
-              alt="MenuLogoSmall"
-              width={24}
-              height={24}
-            />
-            {/* <MenuLogoSmall /> */}
-            <Image
-              src="/assets/UserLogoDownArrow.svg"
-              alt="UserAngleDown"
-              width={14}
-              height={14}
-            />
-            {/* <UserAngleDown /> */}
-          </div>
+        <div
+          className={`user-dropdown hover:bg-[#eaeafd] ${
+            menu.current?.toggle && "bg-indigo-500"
+          }`}
+          onClick={(e) => menu.current?.toggle(e)}
+        >
+          <TieredMenu
+            model={userMenuitems}
+            popup
+            ref={menu}
+            breakpoint="767px"
+            className="absolute mt-1.5 right-0"
+          />
+          <Image
+            src="/assets/MenuLogoSmall.svg"
+            alt="MenuLogoSmall"
+            width={24}
+            height={24}
+          />
+          <Image
+            src="/assets/UserLogoDownArrow.svg"
+            alt="UserAngleDown"
+            width={14}
+            height={14}
+          />
         </div>
-      </header>
-    </PrimeReactProvider>
+      </div>
+    </header>
   );
 }
