@@ -1,7 +1,10 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
+
+import SideNavBar from "../SideBarMenu/SideNavBar";
 
 import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
@@ -14,6 +17,9 @@ import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 
 import Notification from "../../../public/assets/notification.svg";
+import { placeholder } from "../constant/placeholder";
+import { sideNavMenu } from "../constant/sideNav";
+import Link from "next/link";
 
 function SearchBar({
   width,
@@ -39,7 +45,7 @@ function SearchBar({
                  px-3 py-1 flex items-center justify-between group`}
             >
               <InputText
-                placeholder="Search"
+                placeholder={placeholder.search}
                 className="w-full h-full border-0 m-auto border-none rounded-4xl px-[12px] py-[2px] "
                 disabled={true}
                 pt={{
@@ -81,37 +87,77 @@ function SearchBar({
 }
 
 export default function TopHeader() {
-  const toast = useRef(null);
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const sideNav = document.getElementById("side-nav");
+    if (sideNav) {
+      if (isExpanded) {
+        sideNav.classList.add("nav-bar");
+      } else {
+        sideNav.classList.remove("nav-bar");
+      }
+    }
+  }, [isExpanded, mounted]);
+
+  const toast = useRef<Toast>(null);
 
   const show = () => {
-    toast.current.show({
-      severity: "info",
-      summary: "Alerts",
-      detail: "No Messages",
-    });
+    if (toast.current) {
+      toast?.current.show({
+        severity: "info",
+        summary: "Alerts",
+        detail: "No Messages",
+      });
+    }
   };
+
+  function onExpandHandler() {
+    setIsExpanded((prev) => !prev);
+  }
 
   return (
     <PrimeReactProvider>
       <header className="header">
         <div className="flex gap-x-10">
           {/* <Logo className="cursor-pointer" /> */}
+          <Link href="/">
+            <Image
+              src="/assets/logo.svg"
+              alt="Logo"
+              width={24}
+              height={24}
+              className="cursor-pointer"
+            />
+          </Link>
           <Image
-            src="/assets/logo.svg"
-            alt="Logo"
-            width={24}
-            height={24}
-            className="cursor-pointer"
-          />
-          {/* <ExpandFrame className="cursor-pointer" /> */}
-          <Image
-            src="/assets/ExpandFrame.svg"
+            src={
+              isExpanded
+                ? "/assets/ExpandedFrame.svg"
+                : "/assets/ExpandFrame.svg"
+            }
             alt="ExpandFrame"
             width={20}
             height={20}
             style={{ width: "auto", height: "auto" }}
             className="cursor-pointer"
+            onClick={() => onExpandHandler()}
           />
+
+          {mounted &&
+            isExpanded &&
+            document.getElementById("side-nav") &&
+            createPortal(
+              <SideNavBar sideNavMenu={sideNavMenu} />,
+              document.getElementById("side-nav") as HTMLDivElement
+            )}
         </div>
         <div className="search-bar">
           <SearchBar width="w-94 h-7" haveFilter={false} />

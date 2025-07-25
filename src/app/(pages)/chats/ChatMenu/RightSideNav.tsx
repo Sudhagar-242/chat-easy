@@ -50,10 +50,10 @@ export default function RightSideNav() {
             return (
               <div
                 key={item.label}
-                className="w-17.5 group relative cursor-pointer"
+                className="w-17.5 group relative cursor-pointer "
                 onClick={() => clickHandler(idx)}
               >
-                <div className="w-10 h-10 grid place-items-center m-auto">
+                <div className="w-10 h-10 grid place-items-center m-auto hover:bg-[#000000cc] hover:rounded-lg">
                   {/* {item.icon} */}
                   <Image
                     src={item.icon}
@@ -66,7 +66,6 @@ export default function RightSideNav() {
                 {isActive && (
                   <div className="absolute w-full h-full top-0 left-0">
                     <div className="grid w-10 h-10 place-items-center bg-[#000000CC] rounded-lg m-auto">
-                      {/* <CloseIcon /> */}
                       <Image
                         src="/assets/RightSideNav/closeover.svg"
                         alt="closeOver"
@@ -74,7 +73,7 @@ export default function RightSideNav() {
                         height={20}
                       />
                     </div>
-                    <span className="h-full w-1 bg-[#6366f1] absolute top-0 left-0"></span>
+                    <span className="h-full w-1 bg-[#6366f1] absolute top-0 left-0 rounded-t-lg rounded-b-lg rounded-r-3xl"></span>
                   </div>
                 )}
 

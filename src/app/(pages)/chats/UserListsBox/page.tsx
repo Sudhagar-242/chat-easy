@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useContext } from "react";
 import ChatDataContext from "@/app/Context/Context";
-import { UserListType } from "@/app/Context/types";
+import { UserListType } from "@/app/types/types";
 import UserListContainer from "./UserListContainer";
 import UserListsTopSection from "./UserListTopSection";
 

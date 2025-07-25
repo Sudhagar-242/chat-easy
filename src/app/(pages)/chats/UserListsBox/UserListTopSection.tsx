@@ -2,96 +2,147 @@
 import React, { useState } from "react";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
+import Image from "next/image";
+import { MenuItemProps } from "@/app/types/RecievedMessageType";
+import { placeholder } from "@/app/constant/placeholder";
+import { MenuItems } from "@/app/constant/menu";
 
-import Image, { StaticImageData } from "next/image";
+// function SearchBar() {
+//   const [onClick, setOnClick] = useState(false);
 
-type MenuItemProps = {
-  icon: string | StaticImageData;
-  contentName: string;
-  id: string;
-};
+//   const OnClickHandler = () => setOnClick((prev) => !prev);
 
-const MenuItems: MenuItemProps[] = [
-  {
-    icon: "/assets/ChatSvgs/ChatPersonList.svg",
-    contentName: "HOME",
-    id: "01_MenuItem",
-  },
-  {
-    icon: "/assets/ChatSvgs/ChatContatctIcon.svg",
-    contentName: "Contact",
-    id: "02_MenuItem",
-  },
-  {
-    icon: "/assets/ChatSvgs/ChatStarred.svg",
-    contentName: "Starred Message",
-    id: "03_MenuItem",
-  },
-  {
-    icon: "/assets/ChatSvgs/ChatMessages.svg",
-    contentName: "Messages",
-    id: "04_MenuItem",
-  },
-  {
-    icon: "/assets/ChatSvgs/ChatReadIcon.svg",
-    contentName: "Read Messages",
-    id: "05_MenuItem",
-  },
-  {
-    icon: "/assets/ChatSvgs/ChatTimerIcon.svg",
-    contentName: "Timer",
-    id: "06_MenuItem",
-  },
-];
+//   return (
+//     <div className="w-4/5 box-border">
+//       {!onClick ? (
+//         <div
+//           onClick={OnClickHandler}
+//           className="w-full border-2 border-gray-400 rounded-3xl box-border hover:bg-[#F0F0FE] overflow-hidden cursor-pointer px-3 py-1 flex items-center justify-between"
+//         >
+//           <InputText
+//             placeholder={placeholder.search}
+//             disabled
+//             pt={{
+//               root: {
+//                 className:
+//                   "!focus:ring-0 !border-none w-full flex-1 !shadow-none !outline-none !ring-0 !h-full !bg-transparent",
+//               },
+//             }}
+//           />
+//           <InputIcon className="pi pi-search text-gray-500" />
+//         </div>
+//       ) : (
+//         <div className="w-full h-8.5 px-3 py-1 border-2 border-gray-400 box-border flex items-center gap-2">
+//           <select
+//             name="Filter"
+//             id="Filter"
+//             className="text-xs border-none outline-none focus:ring-0 w-[90px] shrink-0"
+//           >
+//             <option value="Contacts">Contacts</option>
+//             <option value="Starred">Starred</option>
+//             <option value="Opened">Opened</option>
+//             <option value="Unread">Unread</option>
+//           </select>
+
+//           <InputText
+//             autoFocus
+//             placeholder={placeholder.search}
+//             pt={{
+//               root: {
+//                 className:
+//                   "!focus:ring-0 !border-none text-xs flex-1 !shadow-none !outline-none !ring-0 !h-full",
+//               },
+//             }}
+//           />
+
+//           <i
+//             className="pi pi-times text-gray-500 cursor-pointer hover:text-black"
+//             onClick={OnClickHandler}
+//           />
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
+// (
+//           <>
+//             <select
+//               name="Filter"
+//               id="Filter"
+//               className="text-xs border-none outline-none focus:ring-0 w-[90px] shrink-0 bg-transparent"
+//             >
+//               <option value="Contacts">Contacts</option>
+//               <option value="Starred">Starred</option>
+//               <option value="Opened">Opened</option>
+//               <option value="Unread">Unread</option>
+//             </select>
+//             <InputText
+//               autoFocus
+//               placeholder={placeholder.search}
+//               pt={{
+//                 root: {
+//                   className:
+//                     "!focus:ring-0 !border-none text-xs flex-1 !shadow-none !outline-none !ring-0 !h-full max-w-1/5 !bg-transparent",
+//                 },
+//               }}
+//             />
+//             <i
+//               className="pi pi-times text-gray-500 cursor-pointer hover:text-black ml-2"
+//               onClick={OnClickHandler}
+//             />
+//           </>
+//         )
 
 function SearchBar() {
   const [onClick, setOnClick] = useState(false);
-
   const OnClickHandler = () => setOnClick((prev) => !prev);
 
   return (
-    <div className="w-full max-w-[300px]">
-      {!onClick ? (
-        <div
-          onClick={OnClickHandler}
-          className="not-active-search-parent w-full h-8.5"
-        >
-          <InputText
-            placeholder="Search"
-            disabled
-            pt={{
-              root: {
-                className:
-                  "!focus:ring-0 !border-none w-full flex-1 !shadow-none !outline-none !ring-0 !h-full !bg-transparent",
-              },
-            }}
-          />
-          <InputIcon className="pi pi-search text-gray-500" />
-        </div>
-      ) : (
-        <div className="active-search-parent flex items-center gap-2 h-9 w-full border-2 border-indigo-400 rounded-2xl px-3 py-1 bg-white shadow-sm">
-          <select name="Filter" id="Filter">
+    <div className="w-4/5 h-10 px-3 py-1 border-2 border-gray-400 box-border flex items-center justify-between rounded-3xl">
+      {onClick ? (
+        <div className="flex w-[-webkit-fill-available] items-center justify-between cursor-pointer">
+          <select
+            name="Filter"
+            id="Filter"
+            className="text-xs border-none outline-none focus:ring-0 w-[90px] shrink-0 bg-transparent cursor-pointer"
+          >
             <option value="Contacts">Contacts</option>
             <option value="Starred">Starred</option>
             <option value="Opened">Opened</option>
             <option value="Unread">Unread</option>
           </select>
-
           <InputText
+            placeholder={placeholder.search}
             autoFocus
-            placeholder="Search"
             pt={{
               root: {
                 className:
-                  "!focus:ring-0 !border-none flex-1 w-full !shadow-none !outline-none !ring-0 !h-full",
+                  "!focus:ring-0 !border-none !shadow-none !outline-none !ring-0 !w-[calc(100%-90px-30%)] !h-full !bg-transparent cursor-auto",
               },
             }}
           />
-
-          <i
-            className="pi pi-times text-gray-500 cursor-pointer hover:text-black"
+          <InputIcon
+            className="pi pi-times text-gray-500 hover:text-black cursor-pointer"
             onClick={OnClickHandler}
           />
+        </div>
+      ) : (
+        <div
+          onClick={OnClickHandler}
+          className="flex w-full items-center justify-between cursor-pointer"
+        >
+          <InputText
+            placeholder={placeholder.search}
+            disabled
+            pt={{
+              root: {
+                className:
+                  "!focus:ring-0 !border-none w-[inherit] !shadow-none !outline-none !ring-0 !h-full !bg-transparent",
+              },
+            }}
+          />
+          <InputIcon className="pi pi-search text-gray-500" />
         </div>
       )}
     </div>
@@ -120,7 +171,11 @@ export default function UserListsTopSection({
     <>
       <div className="user-list-top-parent">
         <SearchBar />
-        <div
+        <Image
+          src="/assets/ChatSvgs/FilterIcon.svg"
+          alt="FilterIcon"
+          width={30}
+          height={30}
           onClick={(ev) => {
             ev.preventDefault();
             handleClick("filter");
@@ -130,16 +185,12 @@ export default function UserListsTopSection({
               ? "bg-[#6366F1] text-white"
               : "hover:bg-[#eaeafd] text-[#48535B]"
           }`}
-        >
-          {/* <FilterIcon /> */}
-          <Image
-            src="/assets/ChatSvgs/FilterIcon.svg"
-            alt="FilterIcon"
-            width={30}
-            height={30}
-          />
-        </div>
-        <div
+        />
+        <Image
+          src="/assets/ChatSvgs/AddBox.svg"
+          alt="AddBox"
+          width={30}
+          height={30}
           onClick={(ev) => {
             ev.preventDefault();
             handleClick("Add");
@@ -149,15 +200,7 @@ export default function UserListsTopSection({
               ? "bg-[#6366F1] text-white"
               : "hover:bg-[#eaeafd] text-[#48535B]"
           }`}
-        >
-          {/* <AddBox /> */}
-          <Image
-            src="/assets/ChatSvgs/AddBox.svg"
-            alt="AddBox"
-            width={30}
-            height={30}
-          />
-        </div>
+        />
       </div>
       <div className="user-list-menu-parent">
         {MenuItems.map((item) => (
@@ -170,7 +213,6 @@ export default function UserListsTopSection({
                 : "hover:bg-[#eaeafd] rounded-lg"
             }`}
           >
-            {/* {item.icon} */}
             <Image src={item.icon} alt={item.icon} width={55} height={45} />
           </div>
         ))}

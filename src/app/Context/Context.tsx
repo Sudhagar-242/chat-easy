@@ -7,7 +7,7 @@ import {
   UserListType,
   userMessageType,
   OrderCardType,
-} from "./types";
+} from "../types/types";
 
 type ContextValueProps = {
   Data: ConversationDataType;

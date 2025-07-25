@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { usePathname } from "next/navigation";
 
 import ChatDataContext from "@/app/Context/Context";
-import { UserListType } from "@/app/Context/types";
+import { UserListType } from "@/app/types/types";
 
 import Link from "next/link";
 import Image from "next/image";

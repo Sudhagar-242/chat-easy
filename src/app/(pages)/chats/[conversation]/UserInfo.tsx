@@ -13,6 +13,7 @@ import TimerSmall from "../../../../../public/assets/ChatSvgs/ChatTimerIconSmall
 
 import "@/app/globals.css";
 import Image, { StaticImageData } from "next/image";
+import { placeholder } from "@/app/constant/placeholder";
 
 type UserInfoProps = {
   userName?: string;
@@ -24,7 +25,6 @@ function SearchBar({
   className = "",
 }: {
   width: string;
-  haveFilter?: boolean;
   className?: string;
 }) {
   const [onClick, setOnClick] = useState(false);
@@ -40,7 +40,7 @@ function SearchBar({
           <div onClick={OnClickHandler}>
             <div className={`${width} not-active-userInfo-search-parent group`}>
               <InputText
-                placeholder="Search"
+                placeholder={placeholder.search}
                 className="not-active-userInfo-search-input"
                 disabled={true}
                 pt={{
@@ -258,7 +258,7 @@ export default function UserInfo({
           {isSearchClicked && (
             <SearchBar
               width="w-50"
-              haveFilter={false}
+              // haveFilter={false}
               className="absolute -ml-40 mt-5 rounded-lg"
             />
           )}

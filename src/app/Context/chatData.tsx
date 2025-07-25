@@ -1,10 +1,9 @@
 import {
   ConversationDataType,
   UserDataType,
-  UserListType,
   userMessageType,
   OrderCardType,
-} from "./types";
+} from "../types/types";
 
 // import User1 from "@/assets/UserListSvg/User1.svg";
 // import User2 from "@/assets/UserListSvg/User2.svg";
@@ -43,7 +42,7 @@ export function getUserList() {
 }
 
 export function getChats(ID: number): userMessageType[] {
-  const chat = UserData.find((item: UserDataType | { seperator: string }) => {
+  const chat = UserData?.find((item: UserDataType | { seperator: string }) => {
     return "CID" in item && item.CID === ID;
   });
   if (chat && "coversation" in chat) {

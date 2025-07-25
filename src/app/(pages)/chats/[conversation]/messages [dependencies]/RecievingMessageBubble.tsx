@@ -1,11 +1,6 @@
+import { RecievedMessageType } from "@/app/types/types";
 import PopUpMenu from "../../ChatMenu/PopUpMenu";
 import Image from "next/image";
-
-export type RecievedMessageType = {
-  message: string;
-  time: string;
-  imageArray?: string[];
-};
 
 export default function LeftMessageBubble({
   message,

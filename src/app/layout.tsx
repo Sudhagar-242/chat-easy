@@ -1,7 +1,8 @@
+import { ContextProvider } from "./Context/Context";
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import HeaaderPage from "./HeaderBar/TopHeader";
-import SideBarPage from "./SideBarMenu/SideNavBar";
 
 import Providers from "./provider";
 
@@ -33,13 +34,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <div className="w-full h-svh m-auto overflow-hidden">
-            <HeaaderPage />
-            <div className="flex w-full h-[calc(100vh-40px)]">
-              <SideBarPage />
-              {children}
+          <ContextProvider>
+            <div className="w-full h-svh m-auto overflow-hidden">
+              <HeaaderPage />
+              <div className="flex w-full h-[calc(100vh-40px)]">
+                <aside id="side-nav"></aside>
+                {children}
+              </div>
             </div>
-          </div>
+          </ContextProvider>
         </Providers>
         {/* <div className="w-full h-full bg-red-300">{children} </div> */}
       </body>

@@ -1,20 +1,10 @@
 import Image, { StaticImageData } from "next/image";
-import { OrderCardType } from "@/app/Context/types";
+import { OrderCardType } from "@/app/types/types";
 import { Button } from "primereact/button";
 import PopUpMenu, { PopUpMenuType } from "./PopUpMenu";
 
 import ReviewStar from "../../../../../public/assets/OrderedImages/RatingStars.svg";
 import HalfReviewStar from "../../../../../public/assets/OrderedImages/HalfRattingStar.svg";
-
-// const generateMessageKey = (msg: string | StaticImageData, index: number) => {
-//   const base =
-//     typeof msg === "string"
-//       ? (msg.slice(0, 7) || "") + index * Math.random() * 10 + index
-//       : Math.floor(Math.random() * 1000).toString();
-//   console.log(base);
-
-//   return btoa(encodeURIComponent(base)).slice(0, 20); // short base64
-// };
 
 const generateMessageKey = (msg: string | StaticImageData, index: number) => {
   const src =

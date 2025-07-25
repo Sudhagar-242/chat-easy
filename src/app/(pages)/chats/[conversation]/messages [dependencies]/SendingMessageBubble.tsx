@@ -1,6 +1,6 @@
 import ReadReciept from "../../../../../../public/assets/ChatSvgs/ReadREciept.svg";
 import AudioPlayer from "./AudioMessage";
-import { SendingMessageType } from "@/app/Context/types";
+import { SendingMessageType } from "@/app/types/types";
 import Image from "next/image";
 
 export default function RightMessageBubble({

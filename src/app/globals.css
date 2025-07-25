@@ -84,11 +84,12 @@
 /* Chats Layout Style */
 
 .chat-layout {
-  @apply flex justify-between w-[calc(100vw-70px)] h-[calc(100vh-40px)] bg-[#f6f6f7];
+  width: -webkit-fill-available;
+  @apply flex justify-between h-[calc(100vh-40px)] bg-[#f6f6f7];
 }
 
 .chat-user-list-container {
-  @apply min-w-88  h-[calc(100vh-40px)] pl-2 pt-1 bg-white;
+  @apply min-w-88 max-w-[27%]  h-[calc(100vh-40px)] pl-2 pt-1 bg-white;
 }
 
 .chat-user-conversation {
@@ -103,10 +104,8 @@
   @apply h-full w-full grid place-items-center text-center text-xl;
 }
 
-/* chat User List Top section Box */
-
-.not-active-search-parent {
-  @apply m-auto border-2 border-gray-400 rounded-3xl box-border hover:bg-[#F0F0FE] overflow-hidden cursor-pointer px-3 py-1 flex items-center justify-between;
+chat User List Top section Box .not-active-search-parent {
+  @apply border-2 border-gray-400 rounded-3xl box-border hover:bg-[#F0F0FE] overflow-hidden cursor-pointer px-3 py-1 flex items-center justify-between w-64;
 }
 
 .not-active-search-input {
@@ -118,7 +117,7 @@
 }
 
 .active-search-parent {
-  @apply h-8.5 m-auto px-3 py-1 border-2 border-gray-400 rounded-full box-border flex items-center gap-2;
+  @apply w-full h-8.5 px-3 py-1 border-2 border-gray-400 rounded-full box-border flex justify-between items-center gap-2;
 }
 
 .active-search-icon {
@@ -126,15 +125,15 @@
 }
 
 .user-list-top-parent {
-  @apply flex items-center gap-x-1 py-4;
+  @apply flex items-center gap-x-1 py-3 pr-1 w-full;
 }
 
 .filter-icon {
-  @apply rounded-lg p-2 cursor-pointer transition-colors;
+  @apply rounded-lg p-2 w-1/10 cursor-pointer transition-colors;
 }
 
 .add-icon {
-  @apply rounded-lg p-2 mr-1 cursor-pointer transition-colors;
+  @apply rounded-lg p-2 w-1/10 cursor-pointer transition-colors;
 }
 
 .user-list-menu-parent {

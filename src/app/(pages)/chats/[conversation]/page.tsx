@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { getChats, getUserInfo } from "@/app/Context/chatData";
-import { RecievedMessageType, SendingMessageType } from "@/app/Context/types";
+import { RecievedMessageType, SendingMessageType } from "@/app/types/types";
 
 import LeftMessageBubble from "./messages [dependencies]/RecievingMessageBubble";
 import RightMessageBubble from "./messages [dependencies]/SendingMessageBubble";
